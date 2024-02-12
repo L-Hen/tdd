@@ -37,5 +37,3 @@ def read_counter(name):
     app.logger.info(f"Request to read counter: {name}")
     global COUNTERS
     return {name: COUNTERS[name]}, status.HTTP_200_OK
-
-
