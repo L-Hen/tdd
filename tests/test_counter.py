@@ -54,3 +54,8 @@ class CounterTest(TestCase):
         result = self.client.get('/counters/doo')
         self.assertEqual(result.status_code, status.HTTP_200_OK)
         self.assertEqual(COUNTERS.get('doo'), 1)
+
+    def test_delete_a_counter(self):
+        client = app.test_client()
+        result = client.post('/counters/delete')
+        self.assertEqual(COUNTERS.delete("delete"), status.HTTP_204_NO_CONTENT)
