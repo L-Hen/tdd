@@ -56,6 +56,8 @@ class CounterTest(TestCase):
         self.assertEqual(COUNTERS.get('doo'), 1)
 
     def test_delete_a_counter(self):
-        client = app.test_client()
-        result = client.post('/counters/delete')
-        self.assertEqual(COUNTERS.delete("delete"), status.HTTP_204_NO_CONTENT)
+        self.client.post('/counters/delete')
+        result = self.client.delete('/counters/delete')
+        self.assertEqual(result.status_code, status.HTTP_204_NO_CONTENT)
+        result = self.client.delete('/counters/delete')
+        self.assertEqual(result.status_code, status.HTTP_404_NOT_FOUND)
